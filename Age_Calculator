@@ -1,0 +1,19 @@
+from datetime import date
+
+
+class Person(object):
+    def __init__(self,name,country,dateofbirth):
+        self.name= name
+        self.country=country
+        self.dateofbirth=dateofbirth
+
+    def age(self):
+        today=date.today()
+        age=today.year - self.dateofbirth[0]
+        if today < date(self.dateofbirth[0],self.dateofbirth[1],self.dateofbirth[2]):
+            age -=1
+        return age
+
+P1=Person('Varada','India',[1996,9,16])
+
+print(P1.age())
