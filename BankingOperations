@@ -1,0 +1,28 @@
+class Bank(object):
+    def __init__(self):
+        self.customers={}
+
+    def Create_Account(self,account_number):
+        self.account_number = account_number
+        if self.account_number in self.customers:
+            print("This account already exists")
+        else:
+            self.customers[account_number]=0
+            print("Congratulations account created!")
+
+    def Credit_Amount(self,account_number,credit):
+        self.account_number=account_number
+        self.credit=credit
+        self.customers[account_number]= self.customers[account_number]+credit
+        print("Amount credited! Your current balance is : ",self.customers[account_number])
+
+    def Debit_Amount(self,account_number,debit):
+        self.account_number=account_number
+        self.debit=debit
+        self.customers[account_number]=self.customers[account_number]-debit
+        print("Amount debited! Your current balance is : ",self.customers[account_number])
+
+    def Check_balance(self,account_number):
+        self.account_number=account_number
+        print("your coount balance is : ",self.customers[account_number])
+
