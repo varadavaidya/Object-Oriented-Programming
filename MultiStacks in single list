@@ -1,0 +1,94 @@
+class MultiStack(object):
+    def __init__(self,maxSize,number_of_stacks):
+        self.n=number_of_stacks
+        self.maxSize=maxSize
+        self.list=self.maxSize*number_of_stacks*[None]
+
+    def push(self,nth_stack,value):
+        m=nth_stack
+        current = self.list[0+int((m-1)*int(self.maxSize))]
+        if current==None:
+            self.list[0+int((m-1)*int(self.maxSize))]=value
+        else:
+            index=0+int((m-1)*(self.maxSize))
+            for _ in range(int(self.maxSize)-1):
+                if self.list[index+1] == None:
+                    self.list[index+1]=value
+                    return self.list
+                else:
+                    pass
+                    index += 1
+
+    def pop(self,nth_stack):
+        m=nth_stack
+        index=int((m-1)*self.maxSize)
+        current=self.list[index]
+        if current==None:
+            print("Nothing to pop.")
+        elif self.list[index+self.maxSize-1] is not None:
+            self.list[index+self.maxSize-1]=None
+        else:
+            for _ in range(self.maxSize-1):
+                if self.list[index+1]==None:
+                    self.list[index]=None
+                    return self.list
+                else:
+                    index+=1
+                    pass
+
+
+    def isFull(self,nth_stack):
+        m=nth_stack
+        if self.list[self.maxSize+int((m-1)*int(self.maxSize))-1]==None:
+            print(False)
+        else:
+            print(True)
+
+    def isEmpty(self,nth_stack):
+        m=nth_stack
+        if self.list[0+int((m-1)*int(self.maxSize))]==None:
+            print(True)
+        else:
+            print(False)
+
+
+    def peek(self,nth_stack):
+        m=nth_stack
+        return self.list[0+int((m-1)*int(self.maxSize))]
+
+    def __str__(self):
+        return str(self.list)
+
+
+
+
+custom_stacks=MultiStack(3,3)
+print(custom_stacks)
+custom_stacks.push(1,22)
+print(custom_stacks)
+custom_stacks.push(1,19)
+print(custom_stacks)
+custom_stacks.push(1,17)
+print(custom_stacks)
+custom_stacks.push(1,1996)
+print(custom_stacks)
+custom_stacks.push(2,25)
+print(custom_stacks)
+custom_stacks.push(3,23)
+print(custom_stacks)
+print(custom_stacks.peek(1))
+print(custom_stacks.peek(2))
+print(custom_stacks.peek(3))
+custom_stacks.isFull(1)
+custom_stacks.isEmpty(1)
+custom_stacks.isFull(2)
+custom_stacks.isEmpty(2)
+custom_stacks.isEmpty(3)
+custom_stacks.isFull(3)
+print(custom_stacks)
+print(custom_stacks.pop(1))
+print(custom_stacks)
+print(custom_stacks.pop(2))
+print(custom_stacks)
+print(custom_stacks.pop(1))
+print(custom_stacks)
