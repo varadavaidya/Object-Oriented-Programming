@@ -5,7 +5,11 @@ class PlateStacks(object):
         self.number_of_stacks=1
 
     def __str__(self):
-        return str(self.stacks)
+        m=self.number_of_stacks
+        if m>1 and self.stacks[int((m-1)*self.capacity)]==None:
+            return str(self.stacks[:int((m-1)*self.capacity)])
+        else:
+            return str(self.stacks)
 
     def push(self,value):
         m=int(len(self.stacks)/self.capacity)
