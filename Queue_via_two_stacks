@@ -1,0 +1,59 @@
+class Stack(object):
+    def __init__(self):
+        self.stack=[]
+
+    def __len__(self):
+        return len(self.stack)
+
+    def __str__(self):
+        return str(self.stack)
+
+    def push(self,value):
+        self.stack.append(value)
+
+    def last_element(self):
+        if len(self.stack)!=0:
+            return self.stack[len(self.stack)-1]
+        else:
+            return None
+
+    def pop(self):
+        if len(self.stack)==0:
+            return None
+        self.stack.pop()
+
+
+class Queue_via_Stacks(object):
+    def __init__(self):
+        self.stack1=Stack()
+        self.stack2=Stack()
+
+    def enqueue(self,value):
+        self.stack1.push(value)
+
+    def dequeue(self):
+        for _ in range(len(self.stack1)):
+            self.stack2.push(self.stack1.last_element())
+            self.stack1.pop()
+        self.stack2.pop()
+        for _ in range(len(self.stack2)):
+            self.stack1.push(self.stack2.last_element())
+            self.stack2.pop()
+        return self.stack1
+
+    def __str__(self):
+        return str([str(self.stack1),str(self.stack2)])
+
+
+
+
+custom_queue_via_stacks=Queue_via_Stacks()
+custom_queue_via_stacks.enqueue(10)
+custom_queue_via_stacks.enqueue(20)
+custom_queue_via_stacks.enqueue(30)
+custom_queue_via_stacks.enqueue(40)
+custom_queue_via_stacks.enqueue(50)
+custom_queue_via_stacks.dequeue()
+print(custom_queue_via_stacks)
+custom_queue_via_stacks.dequeue()
+print(custom_queue_via_stacks)
