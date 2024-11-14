@@ -1,0 +1,62 @@
+class PlateStacks(object):
+    def __init__(self,capacity):
+        self.capacity=capacity
+        self.stacks=self.capacity*[None]
+        self.number_of_stacks=1
+
+    def __str__(self):
+        return str(self.stacks)
+
+    def push(self,value):
+        m=int(len(self.stacks)/self.capacity)
+        if self.stacks[(m-1)*self.capacity+self.capacity-1] is not None:
+            self.stacks.extend(self.capacity*[None])
+            self.stacks[((m)*self.capacity)]=value
+            self.number_of_stacks+=1
+        else:
+            if self.stacks[(m-1)*self.capacity]==None:
+                self.stacks[(m-1)*self.capacity]=value
+            else:
+                index=(m-1)*self.capacity
+                for _ in range(self.capacity):
+                    if self.stacks[index]==None:
+                        self.stacks[index]=value
+                        return self.stacks
+                    else:
+                        index+=1
+                        pass
+
+    def pop(self):
+        index=0
+        for _ in range(self.capacity*self.number_of_stacks):
+            if self.stacks[len(self.stacks)-1-index] == None:
+                index+=1
+                pass
+            else:
+                self.stacks[len(self.stacks)-1-index] = None
+                return self.stacks
+
+
+
+
+custom_platestacks=PlateStacks(3)
+print(custom_platestacks)
+custom_platestacks.push(10)
+print(custom_platestacks)
+custom_platestacks.push(20)
+print(custom_platestacks)
+custom_platestacks.push(30)
+print(custom_platestacks)
+custom_platestacks.push(40)
+print(custom_platestacks)
+custom_platestacks.push(50)
+print(custom_platestacks)
+custom_platestacks.push(60)
+print(custom_platestacks)
+custom_platestacks.push(70)
+print(custom_platestacks)
+print(custom_platestacks.number_of_stacks)
+custom_platestacks.pop()
+print(custom_platestacks)
+custom_platestacks.pop()
+print(custom_platestacks)
