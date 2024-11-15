@@ -1,0 +1,60 @@
+class AnimalShelter(object):
+    def __init__(self):
+        self.shelter=[]
+        self.old_dog=None
+        self.old_cat=None
+
+    def __str__(self):
+        return str(self.shelter)
+
+    def enqueue(self,animal):
+        self.shelter.append(animal)
+
+    def dequeueDog(self):
+        index=0
+        for _ in range(len(self.shelter)):
+            if 'Dog' in self.shelter[index]:
+                print(f"You have purchased {self.shelter[index]}")
+                return self.shelter.remove(self.shelter[index])
+            else:
+                index+=1
+                pass
+
+    def dequeueCat(self):
+        index=0
+        for _ in range(len(self.shelter)):
+            if 'Cat' in self.shelter[index]:
+                print(f"You have purchased {self.shelter[index]}")
+                return self.shelter.remove(self.shelter[index])
+            else:
+                index+=1
+                pass
+
+    def dequeueAny(self):
+        index=0
+        print(f"You have purchased {self.shelter[index]}")
+        self.shelter.remove(self.shelter[index])
+
+
+
+custom_Animal_shelter=AnimalShelter()
+print(custom_Animal_shelter)
+custom_Animal_shelter.enqueue('Dog1')
+custom_Animal_shelter.enqueue('Dog_GermanShepherd')
+custom_Animal_shelter.enqueue('Cat_pudle')
+custom_Animal_shelter.enqueue('Dog_pug')
+custom_Animal_shelter.enqueue('Cat_A')
+custom_Animal_shelter.enqueue('Cat_B')
+custom_Animal_shelter.enqueue('DOg_pug2')
+print(custom_Animal_shelter)
+custom_Animal_shelter.dequeueDog()
+print(custom_Animal_shelter)
+custom_Animal_shelter.dequeueCat()
+print(custom_Animal_shelter)
+custom_Animal_shelter.dequeueAny()
+print(custom_Animal_shelter)
+custom_Animal_shelter.dequeueCat()
+print(custom_Animal_shelter)
+
+
+
