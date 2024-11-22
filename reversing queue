@@ -1,0 +1,79 @@
+class Node:
+    def __init__(self,value):
+        self.value=value
+        self.next=None
+
+class Queue:
+    def __init__(self):
+        self.head=None
+        self.tail=None
+        self.length=0
+
+    def enqueue(self,value):
+        new_node=Node(value)
+        if self.length==0:
+            self.head=new_node
+            self.tail=new_node
+            self.length=1
+        else:
+            current_node=self.head
+            for _ in range(self.length-1):
+                current_node=current_node.next
+            current_node.next=new_node
+            self.tail=new_node
+            self.length+=1
+
+    def dequeue(self):
+        if self.length==0:
+            return
+        if self.length==1:
+            temp_node = self.head
+            self.head=None
+            self.tail=None
+            self.length=0
+        else:
+            temp_node=self.head
+            self.head=temp_node.next
+            self.length-=1
+        return temp_node
+
+    def get(self,index):
+        current_node=self.head
+        for _ in range(index):
+            current_node=current_node.next
+        return current_node
+
+
+    def reverse(self):
+        left_index=0
+        right_index=self.length-1
+        middle=int((left_index+right_index)/2)
+        for _ in range(middle):
+            self.get(left_index).value,self.get(right_index).value=self.get(right_index).value,self.get(left_index).value
+            left_index+=1
+            right_index-=1
+
+
+
+    def __str__(self):
+        current_node=self.head
+        result=f'{current_node.value}<---'
+        for _ in range(self.length-1):
+            current_node=current_node.next
+            result=result+f"{current_node.value}<---"
+        return result
+
+
+
+
+
+
+custom_queue=Queue()
+custom_queue.enqueue(10)
+custom_queue.enqueue(20)
+custom_queue.enqueue(30)
+custom_queue.enqueue(40)
+print(custom_queue)
+print(custom_queue)
+custom_queue.reverse()
+print(custom_queue)
