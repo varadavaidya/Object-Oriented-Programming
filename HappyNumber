@@ -1,0 +1,18 @@
+class Solution:
+    def sum(self,n):
+        if n<10:
+            return n**2
+        else:
+            return (n % 10)**2 + self.sum(int((n-(n % 10))/10))
+
+    def isHappy(self, n: int) -> bool:
+        if self.sum(n)==1:
+            return True
+        else:
+            return (True*self.isHappy(self.sum(n))==1)
+
+
+
+custom_obj=Solution()
+print(custom_obj.isHappy(19))
+print(custom_obj.isHappy(2))
